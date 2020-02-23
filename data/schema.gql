@@ -1,0 +1,9 @@
+
+type user {
+  name: String!
+}
+
+type Query {
+  allUsers: [User!]!
+}
+

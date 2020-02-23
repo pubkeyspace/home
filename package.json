@@ -1,0 +1,38 @@
+{
+  "name": "Locowork",
+  "description": "Coworking space home page",
+  "version": "1.0.0",
+  "dependencies": {
+    "compression": "^1.7.1",
+    "faunadb": "^2.11.1",
+    "node-fetch": "^2.6.0",
+    "polka": "next",
+    "sirv": "^0.4.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.11.0",
+    "sapper": "^0.27.0",
+    "svelte": "^3.0.0",
+    "svelte-loader-hot": "^0.1.0",
+    "webpack": "^4.7.0"
+  },
+  "jshintConfig": {
+    "esversion": 8,
+    "undef": true,
+    "eqeqeq": true,
+    "latedef": false,
+    "unused": "vars",
+    "strict": "implied",
+    "maxlen": 100,
+    "funcscope": true,
+    "browser": true,
+    "devel": true,
+    "asi": true,
+    "sub": true,
+    "globals": {
+      "process": false,
+      "require": false,
+      "module": false
+    }
+  }
+}

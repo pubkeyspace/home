@@ -105,3 +105,15 @@ dist
 
 # Local Netlify folder
 .netlify.*.swp
+
+# Local Netlify folder
+.netlify.DS_Store
+/node_modules/
+/src/node_modules/@sapper/
+yarn-error.log
+/cypress/screenshots/
+/__sapper__/
+/out/
+/lib/env.js
+secret
+.idea/

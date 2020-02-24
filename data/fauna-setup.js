@@ -1,81 +1,117 @@
 // initialize a new FaunaDB database
 
-var util = require('../lib/util')
-var net = require('../lib/net')
-var faunadb = require('faunadb')
-var promptPassword = require('../lib/prompt').promptPassword
+var fs = require('fs')
+var cli = require('../lib/cli')
+var {log} = require('../lib/util')
+var {call, connect, importGraphQLSchema} = require('../lib/fauna')
+var {
+    Collection, Function, Create, Lambda, Query, Update,
+    Var, Now, Get, Select, Call, Identity, Delete, Role, CreateRole, // jshint ignore:line
+    Match, Index, Login, CreateIndex, Concat, Paginate, Map // jshint ignore:line
+} = require('faunadb/src/query')
 
-const DefaultUsername = 'Anon';
+const DefaultUsername = 'Anon'
 
 /**
- * Creates a basic schema and default user.
+ * Add a role and default user.
  *
  * @param secret - admin key
  * @returns token for default user
  */
-async function initFaunaDB(secret) {
-    var q = faunadb.query
-    var client = new faunadb.Client({ secret: secret, timeout: 3000 })
+async function addRoles(secret) {
 
-    console.log('ping: ', await client.ping())
-
-    async function call(query) {
-        try {
-            let r = await client.query(query)
-            console.log('reply', r)
-            return r
-        } catch (e) {
-            console.log('error', e.toString())
-            return null
-        }
-    }
-
-    await call(q.CreateCollection({ name: 'ChatLog' }));
-    await call(q.CreateCollection({ name: 'User' }));
-    await call(q.CreateIndex({
-        name: 'userByName',
-        permissions: { read: "public"},
-        source: q.Collection("User"),
-        terms: [{field: ["data", "name"]}],
-        unique: true,
+    await call(Delete(Role('UserRole')))
+    await call(CreateRole({
+        name: 'UserRole',
+        membership: [{
+            resource: Collection("User")
+        }],
+        privileges: [
+            {
+                resource: Collection('ChatMessage'),
+                actions: { read: true, create: true },
+            },
+            {
+                resource: Collection('User'),
+                actions: { read: true },
+            },
+            {
+                resource: Function('sayHello'),
+                actions: { call: true },
+            },
+            {
+                resource: Function('latestMessages'),
+                actions: { call: true },
+            },
+            {
+                resource: Function('addMessage'),
+                actions: { call: true },
+            },
+        ]
     }))
-    await call(q.Delete(q.Role('User')))
-    await call(q.CreateRole({
-            name: 'User',
-            membership: {
-                resource: Collection("User")
-            },
-            privileges: {
-                resource: q.Collection('ChatLog'),
-                actions: { read: true, write: true },
-            },
-        }))
-    };
 
-    let user = await call(q.Get(q.Match(q.Index("userByName"),DefaultUsername)))
+    let user = await call(Get(Match(Index("userByName"),DefaultUsername)))
     if(! user) {
-        user = await call(q.Create(q.Collection('User'), {
+        user = await call(Create(Collection('User'), {
             data: { name: DefaultUsername },
             credentials: { password: "abc" },
         }))
     }
-    return call(q.Login(user.ref,
+    return (await call(Login(user.ref,
         {password: 'abc'})
-    ).secret;
+    )).secret;
+}
+
+async function defineUDFs() {
+    await call(Update(Function("sayHello"), {
+        body: Query(Lambda(["name"],
+            Concat(["Hello ", Var("name")])
+        ))
+    }))
+    await call(Update(Function("addMessage"), {
+            body: Query(Lambda(["body"],
+                Create(Collection('ChatMessage'), {
+                    data: {
+                        username: Select(['data', 'name'], Get(Identity())),
+                        body: Var('body'),
+                        time: Now(),
+                    },
+                }
+            ))),
+            role: "server",
+        }))
+    await call(CreateIndex({
+        name: "latestMessages",
+        source: Collection("ChatMessage"),
+        values: [
+            { field: ["data", "time"], reverse: true },
+            { field: ["ref"] },
+        ]
+    }))
+    // Map(Paginate(Match(Index('ChatMessageByTime')), { size: 10 }), Lambda('x', {"x": Var('x')}))
+    await call(Update(Function("latestMessages"), {
+        body: Query(Lambda([],
+            Select('data', Map(
+                Paginate(Match(Index('latestMessages')), { size: 10 }),
+                Lambda(['time', 'ref'], Get(Var('ref')))
+            ))
+        )),
+        role: "server",
+    }))
 }
 
 async function setup() {
-    const secret = promptPassword('What is your FaunaDB admin secret?')
+    const secret = await cli.askPass('What is your FaunaDB admin secret?')
+    await connect(secret)
 
-    // import GraphQL schema
-    const schema = require('./schema.gql')
-    await net.postJSON('/import?mode=merge', schema, {
-        auth: 'Bearer ' + secret
-    })
+    const schema = fs.readFileSync(__dirname + '/schema.graphql').toString()
+    await importGraphQLSchema(schema)
+    const token = await addRoles()
 
-    const token = await initFaunaDB(secret)
+    await defineUDFs()
 
-    console.log(`
+
+    log(`
         Please set the following env on Netlify and locally.
         
             export FAUNADB_TOKEN=${token}
@@ -84,5 +120,5 @@ async function setup() {
     `)
 }
 
-util.initCLI()
-setup().then(r => console.log("DONE"))
+cli.initCLI()
+setup()

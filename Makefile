@@ -2,7 +2,7 @@
 all: dist
 
 dev:
-    npx sapper dev
+	npx sapper dev
 
 check:
 	npx jshint *.js src/**.js
@@ -12,6 +12,9 @@ dist: build
 
 build: lib/env.js node_modules
 	npx sapper build out/build
+
+initdb: node_modules
+	node data/fauna-setup.js < secret
 
 node_modules:
 	npm install

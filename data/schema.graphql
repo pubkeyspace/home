@@ -1,0 +1,25 @@
+
+type User {
+  name: String! @unique
+}
+
+type ChatMessage {
+    time: Time!
+    username: String!
+    body: String!
+}
+
+type Query {
+    allUsers: [User!]!
+    messages(username: String!): [ChatMessage!]!
+    userByName(name: String!): User!
+    sayHello(name: String!): String! @resolver(name: "sayHello")
+    latestMessages: [ChatMessage!]! @resolver(name: "latestMessages")
+}
+
+type Mutation {
+    # auto created:
+    # createUser
+    # updateUser
+    addMessage(body: String!): ChatMessage! @resolver(name: "addMessage")
+}

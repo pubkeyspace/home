@@ -29,10 +29,13 @@
     "devel": true,
     "asi": true,
     "sub": true,
+    "evil": true,
     "globals": {
       "process": false,
       "require": false,
-      "module": false
+      "module": false,
+      "Function": true,
+      "__dirname": false
     }
   }
 }

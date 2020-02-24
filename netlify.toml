@@ -4,7 +4,7 @@
 #
 
 [build]
-  publish = "dist/"
+  publish = "out/dist/"
   command = "make all"
 
 [[headers]]

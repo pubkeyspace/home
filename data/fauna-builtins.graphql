@@ -1,0 +1,19 @@
+#
+# These are builtin to FaunaDB but cannot be
+# imported because they cause 'duplicated directive' errors.
+#
+# They are just here for reference and editor plugins
+#
+
+directive @embedded on OBJECT
+directive @collection(name: String!) on OBJECT
+directive @index(name: String!) on FIELD_DEFINITION
+directive @resolver(
+    name: String
+    paginated: Boolean = false
+) on FIELD_DEFINITION
+directive @relation(name: String) on FIELD_DEFINITION
+directive @unique(index: String) on FIELD_DEFINITION
+scalar Date
+scalar Long
+scalar Time

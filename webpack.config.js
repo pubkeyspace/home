@@ -7,10 +7,7 @@ const config = require('sapper/config/webpack.js');
 const pkg = require('./package.json');
 
 const mode = process.env.NODE_ENV || 'development';
-console.log('MODE', mode)
-
 const dev = mode === 'development';
-const hot = dev && process.env.HOT !== 0
 
 const alias = { svelte: path.resolve('node_modules', 'svelte') };
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
@@ -31,11 +28,13 @@ module.exports = {
 						options: {
 							dev, // NOTE dev mode is REQUIRED for HMR
 							hydratable: true,
-              				hotReload: hot,
+							preserveWhitespace: true,
+							preserveComments: true,
+							hotReload: true,
 							hotOptions: {
 								// optimistic will try to recover from runtime errors during
 								// component init (instead of doing a full reload)
-								optimistic: true
+								optimistic: false
 							}
 						}
 					}
@@ -44,7 +43,7 @@ module.exports = {
 		},
 		plugins: [
 			// pending https://github.com/sveltejs/svelte/issues/3632
-			hot && new webpack.HotModuleReplacementPlugin(),
+			dev && new webpack.HotModuleReplacementPlugin(),
 			new webpack.DefinePlugin({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
@@ -69,7 +68,9 @@ module.exports = {
 						loader: 'svelte-loader-hot',
 						options: {
 							css: false,
-							generate: 'ssr',
+							generate: dev ? 'dom' : 'ssr',
+							preserveWhitespace: true,
+							preserveComments: true,
 							dev
 						}
 					}

@@ -1,6 +1,5 @@
 /**
- * Server Worker - for what?
- *
+ * Server Worker - return a static page for client-side rendering
  **/
 /* globals self,caches */
 /* exported routes */
@@ -38,6 +37,10 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+	// for development, never use cache
+	event.respondWith(fetch(event.request));
+	return;
+
 	if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
 
 	const url = new URL(event.request.url);
@@ -57,12 +60,12 @@ self.addEventListener('fetch', event => {
 	// for pages, you might want to serve a shell `service-worker-index.html` file,
 	// which Sapper has generated for you. It's not right for every
 	// app, but if it's right for yours then uncomment this section
-	/*
 	if (url.origin === self.origin && routes.find(route => route.pattern.test(url.pathname))) {
+		console.log('using service-worker-index.html in place of ', url)
 		event.respondWith(caches.match('/service-worker-index.html'));
 		return;
 	}
-	*/
+
 
 	if (event.request.cache === 'only-if-cached') return;
 

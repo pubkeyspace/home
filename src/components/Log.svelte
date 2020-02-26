@@ -1,50 +1,37 @@
 <script>
-	let events = [
-			'event1',
-			'event2',
-			'event3',
-	]
-	function addMsg() {
-		console.log('here')
-		events = [...events, 'new-msg']
-	}
-	let count = 4
-	let name = 'myname'
-	function upCount() {
-		count = count + 1
-	}
-	let mode = process.env.NODE_ENV
+	import { onMount } from 'svelte';
+	import { devmode, installHook } from '../../lib/util';
+
+	let events = [];
+	let photos = [];
+
+	onMount(async () => {
+		const hook = installHook((level, event) => {
+			events.push([level, ...event])
+		})
+
+		// returned function will be called when unmounted
+		return () => hook.clear()
+	});
 </script>
 
-
 <style>
-	debug-log {
-		position: relative;
-		display: block;
-		background: #a7d7d4;
-		//border: thin solid black;
-		width: 100%;
-		min-height: 30em;
-		padding: 6px;
-		margin: 6px;
-		z-index: 10;
+	p {
+		padding: 1em;
 	}
 	h3 {
 		display: block;
 		background-color: #78a29f;
-		margin: -6px -6px 6px -6px;
-		padding: 4px;
+		margin: 0 0 1em 0;
+		padding: 0.2em 1em;
 		border-bottom: thin solid black;
 	}
 </style>
 
-<debug-log>
-	<h3>debug log</h3>
-	<button on:click={addMsg}>Make Log Entry</button>
-	<ul>
-		{#each events as event}
-			<li>{event}</li>
-		{/each}
-	</ul>
-	<p>mode: {mode}</p>
-</debug-log>
+<h3>debug log</h3>
+<p>devmode = {devmode}</p>
+<ul>
+	{#each events as event}
+		<li>{event.join(' ')}</li>
+	{/each}
+</ul>

@@ -8,10 +8,12 @@ check:
 	npx jshint *.js src/**.js
 
 dist: build
-	npx sapper export --build=false --build-dir=out/build out/dist
+	NODE_ENV=production \
+		npx sapper export --build=false --build-dir=out/build out/dist
 
 build: lib/env.js node_modules
-	npx sapper build out/build
+	NODE_ENV=production \
+		npx sapper build out/build
 
 initdb: node_modules
 	node data/fauna-setup.js < secret

@@ -15,10 +15,17 @@ const mainFields = ['svelte', 'module', 'browser', 'main'];
 
 module.exports = {
 	client: {
-		mode: mode,
+		mode: 'none',
 		entry: config.client.entry(),
 		output: config.client.output(),
-		resolve: { alias, extensions, mainFields },
+		resolve: {
+			alias: {
+				...alias,
+				"./lib/shims.js": "./lib/shims.browser.js",
+			},
+			extensions,
+			mainFields
+		},
 		module: {
 			rules: [
 				{
@@ -30,7 +37,7 @@ module.exports = {
 							hydratable: true,
 							preserveWhitespace: true,
 							preserveComments: true,
-							hotReload: true,
+							hotReload: dev,
 							hotOptions: {
 								// optimistic will try to recover from runtime errors during
 								// component init (instead of doing a full reload)
@@ -40,6 +47,10 @@ module.exports = {
 					}
 				}
 			]
+		},
+		optimization: {
+			namedChunks: true,
+			namedModules: true,
 		},
 		plugins: [
 			// pending https://github.com/sveltejs/svelte/issues/3632
@@ -68,7 +79,7 @@ module.exports = {
 						loader: 'svelte-loader-hot',
 						options: {
 							css: false,
-							generate: dev ? 'dom' : 'ssr',
+							generate: 'ssr', // dev ? 'dom' : 'ssr',
 							preserveWhitespace: true,
 							preserveComments: true,
 							dev

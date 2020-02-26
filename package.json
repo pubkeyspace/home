@@ -10,14 +10,16 @@
     "sirv": "^0.4.0"
   },
   "devDependencies": {
+    "svelte-swipe": "^1.4.0",
     "jshint": "^2.11.0",
     "sapper": "^0.27.0",
     "svelte": "^3.19.1",
+    "svelte-feather-icons": "^3.2.2",
     "svelte-loader-hot": "^0.1.0",
     "webpack": "^4.7.0"
   },
   "jshintConfig": {
-    "esversion": 8,
+    "esversion": 9,
     "undef": true,
     "eqeqeq": true,
     "latedef": false,

@@ -1,12 +1,18 @@
 <script>
+	import {devmode} from '../../lib/util'
+
 	export let segment;
+
+	let maplink = 'https://www.openstreetmap.org/?mlat=52.3879&mlon=4.8853#map=16/52.3879/4.8853&layers=H'
 </script>
 
 <style>
 	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
+		padding: 1em 1em;
+		text-align: right;
+	}
+
+	nav > * {
 		text-align: right;
 	}
 
@@ -24,71 +30,77 @@
 
 	li {
 		display: block;
-	}
-
-	.selected {
 		position: relative;
-		display: inline-block;
+		padding: 0 0 1em 0;
 	}
 
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
+	li a {
+		padding: 0 0 0.5em 0;
+	}
+
+	li.selected a {
+		border-bottom: #676778 solid 2px;
+	}
+
+	li:hover a {
+		border-bottom: #676778 solid 2px;
 	}
 
 	a {
 		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
-	}
-
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
 	}
 
 	figure {
-		margin: 0 0 1em 0;
+		margin: 1em 0 1em 0;
 	}
 
 	img {
 		max-width: 400px;
 		margin: 0 0 1em 0;
 	}
+	@media (max-width: 700px) {
+		h1, li, figure, figcaption, ul {
+			display: inline-block;
+		}
+		img { float: left; width: 50px; height: 50px; }
+	}
 
+	p {
+		margin: 0;
+		padding: 0;
+	}
 </style>
 
 <nav>
-	<h1>Pubkey</h1>
-
-	<figure>
-		<img height=150 width=150  alt='' src='map.png'>
-		<figcaption>
-			Studio #2<br>
-			Korte Zoutkeetsgracht 2<br>
-			1013 MC Amsterdam<br>
-		</figcaption>
-	</figure>
+	<a href="/"><h1>Pubkey</h1></a>
 
 	<ul>
-		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>intro</a></li>
-		<li><a class='{segment === "about" ? "selected" : ""}' href='about'>about</a></li>
-		<li><a class='{segment === "events" ? "selected" : ""}' href='events'>events</a></li>
+		<li class='{segment === undefined ? "selected" : ""}' ><a href='.'>intro</a></li>
+		<li class='{segment === "about" ? "selected" : ""}'><a href='about'>about</a></li>
+		<li class='{segment === "events" ? "selected" : ""}'><a href='events'>events</a></li>
+
+	{#if devmode}
+		<li class='{segment === "play" ? "selected" : ""}'><a href='play'>play</a></li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch class='{segment === "blog" ? "selected" : ""}' href='blog'>blog</a></li>
+		<li class='{segment === "blog" ? "selected" : ""}'><a rel=prefetch href='blog'>blog</a></li>
+	{/if}
 	</ul>
+
+
+	<a href={maplink}>
+	<figure>
+			<img height=150 width=150  alt='' src='map.png'>
+		<figcaption>
+				Studio #2<br>
+				Korte Zoutkeetsgracht 2<br>
+				1013 MC Amsterdam<br>
+		</figcaption>
+	</figure>
+	</a>
+
+	<p>
+		<a href="mailto:hello@pubkey.space">hello@pubkey.space</a>
+	</p>
 </nav>

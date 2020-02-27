@@ -4,20 +4,19 @@
 
 <h1>About</h1>
 
-<h2>Plans</h2>
-
-<h3>Privkey Plan</h3>
+<h2>Privkey Plan</h2>
 <ul>
-	<li>Although the desk is guaranteed to always be available, when you are not around they are available for others.</li>
-	<li>Hours: Daily 6.00 → 23.00</li>
-	<li>Includes a key.</li>
-	<li><b>Price</b>: €300/month ex BTW</li>
+	<li>Your desk</li>
+	<li>Your door keys</li>
+	<li><b>Price</b>: €299/month ex BTW</li>
 </ul>
 
-<h3>Pubkey Plan</h3>
+<h2>Pubkey Plan</h2>
 <ul>
-	<li>With this plan you can work on a more occasional basis</li>
-	<li>Available space is not guaranteed, but so far this isn't always a problem.</li>
-	<li>Hours: Usually 6.00 → 23.00, by reservation</li>
-	<li><b>Price</b>: €100/month ex BTW</li>
+	<li>Flex desks, couch, community tables</li>
+	<li>Hours: Usually 7.00 → 22.00</li>
+	<li><b>Price</b>: €99/month ex BTW</li>
 </ul>
+
+<p>Sometimes you have a preference for quiet days, other times social days.  We have a private calendar available to see who you can expect to see in the space.</p>
+

@@ -28,6 +28,8 @@
 </svelte:head>
 
 <h1>Welcome</h1>
+<p>Pubkey is a community and space in Amsterdam's Zeehelderbuurt. We are programmers, scientists, designers, researchers and theorists working on autonomous and collaborative projects as professionals and hobbyists.</p>
+<p>We aim to be a hyper-local solution as to where to spare over a coffee with your newest ideas along side diverse expertise and experienced makers. We are the study you don't have in your home.</p>
 
 <p>
 	Pubkey space is a small community space near the Spaardammerbuurt in Amsterdam.
@@ -43,6 +45,4 @@
 	<svelte:component this={Pics}/>
 {/if}
 
-<p>
-	If you're interested in joining, <a href="mailto:hello@pubkey.space">send</a> us an email.
-</p>
+<p>Interested in joining? Send us an <a href="mailto:hello@pubkey.space">email</a>.</p>

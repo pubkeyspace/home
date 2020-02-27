@@ -25,7 +25,7 @@
 
 <div class="swipe-holder">
 	<Swipe {showIndicators} {autoplay} {delay} {transitionDuration} {defaultIndex}>
-		{#each [3,4,5,6,7,8] as i}
+		{#each [3,4,5,6,7] as i}
 			<SwipeItem>
 				<img src="/studio/img{i}.jpeg" alt="{i}">
 			</SwipeItem>

@@ -6,25 +6,13 @@ https://kzg2.netlify.com
 
 ## Usage
 
-Build:
-
-    make all
-    xdg-open dist/index.html
-
 Use locally:
-
-    npm install
-    npm run dev
-    # open localhost:3000 
-
-Test Deploy:
-
-    npm install -g netlify
-    netlify deploy --open
+    
+    $ make dev
 
 Deploy live:
 
-    git push
+    $ git push
 
 ## To setup a new fork:
 

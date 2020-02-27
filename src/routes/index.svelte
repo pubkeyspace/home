@@ -29,7 +29,7 @@
 
 <h1>Welcome</h1>
 <p>Pubkey is a community and space in Amsterdam's Zeehelderbuurt. We are programmers, scientists, designers, researchers and theorists working on autonomous and collaborative projects as professionals and hobbyists.</p>
-<p>We aim to be a hyper-local solution as to where to spar over a coffee with your newest ideas along side diverse expertise and experienced makers. We are the study you don't have in your home.</p>
+<p>We aim to be a hyper-local solution as to where to spar over a coffee with new ideas along side diverse expertise and experienced makers. We are the study you don't have in your home.</p>
 
 <p>
 	What you can expect:

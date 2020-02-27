@@ -32,7 +32,7 @@
 <p>We aim to be a hyper-local solution as to where to spar over a coffee with your newest ideas along side diverse expertise and experienced makers. We are the study you don't have in your home.</p>
 
 <p>
-	See what you can expect:
+	What you can expect:
 </p>
 
 {#if loading}

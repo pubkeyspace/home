@@ -34,7 +34,6 @@
 	}
 
 	#left {
-		background: #f6fafd;
 		grid-area: left;
 		text-align: right;
 	}
@@ -62,7 +61,6 @@
 		margin-top: 1em;
 		position: relative;
 		display: block;
-		background: #f6fafd;
 		width: 100%;
 		max-width: 30em;
 		min-height: 20em;

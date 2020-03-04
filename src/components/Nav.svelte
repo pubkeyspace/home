@@ -76,7 +76,7 @@
 
 	<ul>
 		<li class='{segment === undefined ? "selected" : ""}' ><a href='.'>intro</a></li>
-		<li class='{segment === "about" ? "selected" : ""}'><a href='about'>about</a></li>
+		<li class='{segment === "coworking" ? "selected" : ""}'><a href='coworking'>coworking</a></li>
 		<li class='{segment === "events" ? "selected" : ""}'><a href='events'>events</a></li>
 
 	{#if devmode}

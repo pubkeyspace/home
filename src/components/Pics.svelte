@@ -10,14 +10,14 @@
 </script>
 
 <style>
-	.swipe-holder{
+	.swipe-holder {
 		height: 600px;
 		max-height: 80vh;
 		width: calc(100% + 1em);
 		margin-left: -1em;
 		margin-right: -1em;
 	}
-	img{
+	img {
 		width: 100%;
 		height: auto;
 	}

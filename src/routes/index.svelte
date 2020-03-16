@@ -36,9 +36,7 @@
 </p>
 
 {#if loading}
-	<p>
-		<img src="/studio/img3.jpeg" alt="Studio Photo #3"/>
-	</p>
+	<p><img src="/studio/img1.jpeg" alt="The Studio"/></p>
 {:else}
 	<svelte:component this={Pics}/>
 {/if}

@@ -1,8 +1,8 @@
 <svelte:head>
-	<title>About Pubkey</title>
+	<title>Pubkey Coworking</title>
 </svelte:head>
 
-<h1>About</h1>
+<h1>Coworking</h1>
 
 <h2>Privkey Plan</h2>
 <ul>

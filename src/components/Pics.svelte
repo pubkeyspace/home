@@ -10,14 +10,14 @@
 </script>
 
 <style>
-	.swipe-holder{
+	.swipe-holder {
 		height: 600px;
 		max-height: 80vh;
 		width: calc(100% + 1em);
 		margin-left: -1em;
 		margin-right: -1em;
 	}
-	img{
+	img {
 		width: 100%;
 		height: auto;
 	}
@@ -25,7 +25,7 @@
 
 <div class="swipe-holder">
 	<Swipe {showIndicators} {autoplay} {delay} {transitionDuration} {defaultIndex}>
-		{#each [3,4,5,6,7] as i}
+		{#each [1,8,3,4,5,6,2] as i}
 			<SwipeItem>
 				<img src="/studio/img{i}.jpeg" alt="{i}">
 			</SwipeItem>

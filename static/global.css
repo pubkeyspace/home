@@ -1,9 +1,10 @@
 
-@import url('https://fonts.googleapis.com/css?family=Inria+Serif:400,400i,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto:500&display=swap');
-
 /* Open source font - JBG */
 @import url('https://fonts.googleapis.com/css?family=Hind&display=swap');
+
+html {
+	height: 100%;
+}
 
 body {
 	margin: 0;
@@ -12,17 +13,14 @@ body {
 	color: #333;
 	min-height: 100%;
 	background: #fff;
-}
-
-html {
-	height: 100%;
+	text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5em 0;
 	font-weight: 500;
 	font-size: 1em;
-	font-family: Hind, sans;
+	font-family: Hind, sans-serif;
 }
 
 h1 {

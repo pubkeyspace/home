@@ -75,29 +75,29 @@
 	<a href="/"><h1>Pubkey</h1></a>
 
 	<ul>
-		<li class='{segment === undefined ? "selected" : ""}' ><a href='.'>intro</a></li>
-		<li class='{segment === "about" ? "selected" : ""}'><a href='about'>about</a></li>
-		<li class='{segment === "events" ? "selected" : ""}'><a href='events'>events</a></li>
+		<li class:selected={segment === undefined} ><a href='.'>intro</a></li>
+		<li class:selected={segment === "about"}><a rel=prefetch href='about'>about</a></li>
+		<li class:selected={segment === "events"}><a rel=prefetch href='events'>events</a></li>
 
 	{#if devmode}
-		<li class='{segment === "play" ? "selected" : ""}'><a href='play'>play</a></li>
+		<li class:selected={segment === "play"}><a rel=prefetch href='play'>play</a></li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li class='{segment === "blog" ? "selected" : ""}'><a rel=prefetch href='blog'>blog</a></li>
+		<li class:selected={segment === "blog"}><a rel=prefetch href='blog'>blog</a></li>
 	{/if}
 	</ul>
 
 
 	<a href={maplink}>
-	<figure>
+		<figure>
 			<img height=150 width=150  alt='' src='map.png'>
-		<figcaption>
-				Studio #2<br>
-				Korte Zoutkeetsgracht 2<br>
-				1013 MC Amsterdam<br>
-		</figcaption>
-	</figure>
+			<figcaption>
+					Studio #2<br>
+					Korte Zoutkeetsgracht 2<br>
+					1013 MC Amsterdam<br>
+			</figcaption>
+		</figure>
 	</a>
 
 	<p>

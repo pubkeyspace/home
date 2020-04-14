@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import { devmode, installHook } from '../../lib/util';
+	import { devmode, installHook } from 'lib/util';
+	import { shims_version } from 'lib/shims';
 
 	let events = [];
 	let photos = [];
@@ -29,7 +30,7 @@
 </style>
 
 <h3>debug log</h3>
-<p>devmode = {devmode}</p>
+<p>devmode = {devmode} shims = {shims_version}</p>
 <ul>
 	{#each events as event}
 		<li>{event.join(' ')}</li>

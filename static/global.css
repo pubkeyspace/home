@@ -46,6 +46,10 @@ code {
 	border-radius: 2px;
 }
 
+img {
+        max-width: 100%;
+}
+
 @media (min-width: 400px) {
 	body {
 		font-size: 16pt;

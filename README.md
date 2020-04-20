@@ -14,6 +14,16 @@ Deploy live:
 
     $ git push
 
+Test static version locally:
+
+    $ make dist
+    $ npx serve out/dist
+    $ open http://localhost:5000
+    
+## Blog
+
+To add a blog post, create a new markdown file in [content/].
+
 ## To setup a new fork:
 
 1. `npx netlify init`

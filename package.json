@@ -5,19 +5,26 @@
   "dependencies": {
     "compression": "^1.7.1",
     "faunadb": "^2.11.1",
+    "gray-matter": "^4.0.2",
+    "highlight.js": "^9.18.1",
     "jmespath": "^0.15.0",
+    "marked": "^0.8.2",
+    "mini-css-extract-plugin": "^0.9.0",
     "netlify": "^3.1.0",
     "node-fetch": "^2.6.0",
     "polka": "next",
+    "postcss-import": "^12.0.1",
     "sirv": "^0.4.0"
   },
   "devDependencies": {
-    "svelte-swipe": "^1.4.0",
+    "css-loader": "^3.5.2",
     "jshint": "^2.11.0",
+    "postcss-loader": "^3.0.0",
     "sapper": "^0.27.0",
     "svelte": "^3.19.1",
     "svelte-feather-icons": "^3.2.2",
     "svelte-loader-hot": "^0.1.0",
+    "svelte-swipe": "^1.4.0",
     "webpack": "^4.7.0"
   },
   "jshintConfig": {

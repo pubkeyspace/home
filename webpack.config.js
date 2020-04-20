@@ -16,9 +16,11 @@ const alias = {
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 module.exports = {
 	client: {
-		mode: 'none',
+		mode: mode,
 		entry: config.client.entry(),
 		output: config.client.output(),
 		resolve: {
@@ -40,6 +42,7 @@ module.exports = {
 							hydratable: true,
 							preserveWhitespace: true,
 							preserveComments: true,
+							emitCss: true,
 							hotReload: dev,
 							hotOptions: {
 								// optimistic will try to recover from runtime errors during
@@ -48,6 +51,22 @@ module.exports = {
 							}
 						}
 					}
+				},
+				{
+					test: /\.css$/,
+					use: [
+						MiniCssExtractPlugin.loader,
+						{ loader: 'css-loader', options: { sourceMap: true } },
+						{ loader: 'postcss-loader', options: {
+								ident: 'postcss',
+								plugins: (loader) => [
+									require('postcss-import')({ root: loader.resourcePath }),
+									//require('postcss-preset-env')(),
+									//require('cssnano')()
+								]
+							}
+						},
+					]
 				}
 			]
 		},
@@ -61,6 +80,9 @@ module.exports = {
 			new webpack.DefinePlugin({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
+			}),
+			new MiniCssExtractPlugin({
+				filename: 'global.css',
 			}),
 		].filter(Boolean),
 		devtool: dev && 'inline-source-map'

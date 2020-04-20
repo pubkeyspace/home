@@ -26,6 +26,7 @@ lib/env.js:
 	tail -v -n50 lib/env.js
 
 clean:
+	rm -R out __sapper__
 	rm lib/env.js
 
 # reconfigure

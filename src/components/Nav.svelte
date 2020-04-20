@@ -87,7 +87,7 @@
 
 	<a href={maplink}>
 		<figure>
-			<img height=150 width=150  alt='' src='map.png'>
+			<img height=150 width=150  alt='' src='map.jpeg'>
 			<figcaption>
 					Studio #2<br>
 					Korte Zoutkeetsgracht 2<br>

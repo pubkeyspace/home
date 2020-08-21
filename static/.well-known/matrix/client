@@ -1,0 +1,13 @@
+{
+	"m.homeserver": {
+		"base_url": "https://matrix.pubkey.space"
+	}
+,
+	"m.identity_server": {
+		"base_url": "https://matrix.pubkey.space"
+	}
+,
+	"im.vector.riot.jitsi": {
+		"preferredDomain": "jitsi.pubkey.space"
+	}
+}

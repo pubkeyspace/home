@@ -20,3 +20,8 @@
 	must-revalidate
     '''
 
+[[headers]]
+  for = "/.well-known/*"
+
+  [headers.values]
+  Access-Control-Allow-Origin="*"

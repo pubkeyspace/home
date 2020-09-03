@@ -20,7 +20,7 @@
     "css-loader": "^3.5.2",
     "jshint": "^2.11.0",
     "postcss-loader": "^3.0.0",
-    "sapper": "^0.27.0",
+    "sapper": "^0.27.11",
     "svelte": "^3.19.1",
     "svelte-feather-icons": "^3.2.2",
     "svelte-loader-hot": "^0.1.0",

@@ -1,9 +1,5 @@
 <style>
 
-.bold {
-  font-weight: bold;
-}
-
 .center {
   text-align: center;
 }

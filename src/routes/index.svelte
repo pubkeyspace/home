@@ -48,7 +48,7 @@ button {
 <section>
 <h1>Welcome</h1>
 <p>Pubkey is a coworking space in Amsterdam's Zeeheldenbuurt. We are programmers, scientists, designers, researchers and theorists working on autonomous and collaborative projects as professionals and hobbyists.</p>
-<p class="bold">We aim to be study you don't have in your home.</p>
+<p class="bold">We aim to be the study you don't have in your home.</p>
 </section>
 
 <section>

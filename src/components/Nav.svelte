@@ -78,7 +78,9 @@
 		<li class='{segment === undefined ? "selected" : ""}' ><a href='.'>intro</a></li>
 		<li class='{segment === "coworking" ? "selected" : ""}'><a rel=prefetch href='coworking'>coworking</a></li>
 		<li class='{segment === "events" ? "selected" : ""}'><a rel=prefetch href='events'>events</a></li>
+	{#if devmode}
 		<li class:selected={segment === "blog"}><a rel=prefetch href='blog'>blog</a></li>
+	{/if}
 	{#if devmode}
 		<li class:selected={segment === "play"}><a rel=prefetch href='play'>play</a></li>
 	{/if}

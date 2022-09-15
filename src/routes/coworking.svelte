@@ -29,15 +29,15 @@ button {
 <h2>Pubkey Plan</h2>
 <ul>
   <li>Flex desks, couch, community tables</li>
-  <li>Hours: Usually 7.00 → 22.00</li>
-  <li><b>Price</b>: €99/month ex BTW</li>
+  <li>Hours: Usually 9.00 → 18.00</li>
+  <li><b>Price</b>: € 150 / month ex BTW</li>
 </ul>
 
 <h2>Privkey Plan</h2>
 <ul>
   <li>Your desk</li>
   <li>Your door keys</li>
-  <li><b>Price</b>: €299/month ex BTW</li>
+  <li><b>Price</b>: € 350 / month ex BTW</li>
 </ul>
 </section>
 
